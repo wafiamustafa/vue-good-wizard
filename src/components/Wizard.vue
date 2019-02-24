@@ -25,20 +25,20 @@
         <a
           v-if="backEnabled"
           class="wizard__back pull-left"
-          @click="goBack(onBack)">
+          @click="goBack()">
           <i class="vgw-icon vgw-prev"></i>
           <span>{{previousStepLabel}}</span> 
         </a>
         <a
           :class="{'disabled': options[currentStep].nextDisabled}"
           v-if="currentStep != steps.length - 1" class="wizard__next pull-right"
-          @click="goNext(onNext)">
+          @click="goNext()">
           <span>{{nextStepLabel}}</span>
           <i class="vgw-icon vgw-next"></i>
         </a>
         <a
           :class="{'disabled': options[currentStep].nextDisabled}"
-          v-if="currentStep == steps.length - 1" class="wizard__next pull-right final-step" @click="goNext(onNext)">
+          v-if="currentStep == steps.length - 1" class="wizard__next pull-right final-step" @click="goNext()">
           {{finalStepLabel}}
         </a>
       </div>
@@ -114,7 +114,6 @@ export default {
   },
   methods: {
     goNext (skipFunction) {
-      console.log("sssssssssssssssssssss",skipFunction)
       if (!skipFunction && typeof this.onNext == 'function'){
         if(!this.onNext(this.currentStep)) {
           //returned false. don't do anything
@@ -126,7 +125,6 @@ export default {
       }
     },
     goBack (skipFunction) {
-      console.log("bbbbbbbbbbbbbbbbbbbb",skipFunction)
       if (!skipFunction && typeof this.onBack == 'function'){
         if(!this.onBack(this.currentStep)) {
           //returned false. don't do anything
